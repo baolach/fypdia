@@ -20,4 +20,6 @@ from getdata import views    # need this from the views.py
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home)
+
+
 ]
