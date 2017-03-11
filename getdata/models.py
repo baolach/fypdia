@@ -9,8 +9,5 @@ class GetClient(models.Model):
     def __str__(self):  # rather than just saying post object, we can name the posts for the admin page
         return self.client_name
 
-    def return_name(self):
-        # test - tryin to extract the postgres data
-        return self.client_name
 
 

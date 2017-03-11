@@ -1,8 +1,17 @@
 home page
 <br/>
 <br/>
-{% for getClient in getdata.all %}
+{% for getClient in getclients.all %}
 
-{{ getClient.return_name }}
+{{ getClient.client_name }}
+
+    <br/>
+    {{ getClient.client_phone }}
+    <br/>
+    {{ getClient.client_address }}
+    <br/>
+    <br/>
+    <br/>
+
 
 {% endfor %}
