@@ -13,13 +13,55 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from getdata import views    # need this from the views.py
+#added
+'''
+from django.contrib.auth.models import User, Client
+from rest_framework import routers, serializers, viewsets
+
+'''
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.home)
-
+    url(r'^$', views.home),
+    url(r'^getdata/', include('getdata.urls')),
+    # added
+   #  url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    #url(r'^', include(router.urls)),
 
 ]
+'''
+# added Serializers define the API representation.
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ('url', 'username', 'email', 'is_staff')
+
+# ViewSets define the view behavior.
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+
+class ClientSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Client
+        fields = ('client_name', 'client_phone', 'client_address')
+
+# ViewSets define the view behavior.
+class ClientViewSet(viewsets.ModelViewSet):
+    queryset = Client.objects.all()
+    serializer_class = ClientSerializer
+
+
+# Routers provide an easy way of automatically determining the URL conf.
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
+router.register(r'groups', views.GroupViewSet)
+router.register(r'clients', ClientViewSet)
+'''
+

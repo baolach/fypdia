@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'getdata',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -76,18 +77,22 @@ WSGI_APPLICATION = 'fypdia.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-
-        'ENGINE': 'django.db.backends.postgresql',   # django.db.backends.postgresql OR django.contrib.gis.db.backends.postgis OR django.db.backends.postgresql_psycopg2
-        'NAME': 'fypdia',
+        'ENGINE': 'django.contrib.gis.db.backends.mysql',
+        'NAME': 'backend',
         'USER': 'root',
         'PASSWORD': 'Cassie2007',
-        'HOST': '138.68.141.18',
-        'PORT': '5432',
+        'HOST': 'localhost',
+        'PORT': '3307'
     }
-
 }
+
+
+'''
+The problem is that the admin database isnt connected to the postgres. I tried using different users but no good
+Once i have the tables in the postgres db synced with the django db - then Im connected and I can acces the data
+with the django rest framework
+
+'''
 
 
 
@@ -128,3 +133,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        'rest_framework.permissions.IsAdminUser',
+    ],
+    'PAGE_SIZE': 10
+}
