@@ -16,23 +16,31 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from getdata import views    # need this from the views.py
+# from django.contrib.auth.models import User, Client
+# from rest_framework import routers, serializers, viewsets
 #added
-'''
-from django.contrib.auth.models import User, Client
-from rest_framework import routers, serializers, viewsets
+from rest_framework.urlpatterns import format_suffix_patterns
 
-'''
+
+
+
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home),
-    url(r'^getdata/', include('getdata.urls')),
+    url(r'^getdata/', include('getdata.urls')),   # dont need once below works
+    url(r'^clients/', views.ClientList.as_view()),  # returns list of clients
     # added
-   #  url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
-    #url(r'^', include(router.urls)),
+    # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    # url(r'^', include(router.urls)),
 
 ]
+
+urlpatters = format_suffix_patterns(urlpatterns)
+
+
+
 '''
 # added Serializers define the API representation.
 class UserSerializer(serializers.HyperlinkedModelSerializer):
