@@ -5,6 +5,8 @@ from . import views
 # http://localhost:8000/clients/   works
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^clients/', views.ClientList.as_view()),  # returns list of clients
+
 ]
 
 
