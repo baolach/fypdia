@@ -25,7 +25,7 @@ SECRET_KEY = '8!3j-09ej*2(+mhg67e4&9_qdg=1_2wx!bn2gks1729qb1=#=m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [u'138.68.141.18', 'localhost']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,13 +37,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
     'getdata',
     'rest_framework',
+    'rest_framework_gis',
+    'rest_framework.authtoken',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -77,12 +82,12 @@ WSGI_APPLICATION = 'fypdia.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.mysql',
-        'NAME': 'backend',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'fypdia',
         'USER': 'root',
         'PASSWORD': 'Cassie2007',
-        'HOST': 'localhost',
-        'PORT': '3307'
+        'HOST': '138.68.141.18',
+        'PORT': '5432'
     }
 }
 
@@ -143,3 +148,5 @@ STATIC_URL = '/static/'
 #     ],
 #     'PAGE_SIZE': 10
 # }
+
+CORS_ORIGIN_ALLOW_ALL = True
