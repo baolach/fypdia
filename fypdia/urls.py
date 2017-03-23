@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^$', views.home),
     url(r'^getdata/', include('getdata.urls')),   # dont need once below works
     url(r'^clients/', views.ClientList.as_view()),  # returns list of clients
+
     # added
     # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
     # url(r'^', include(router.urls)),

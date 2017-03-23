@@ -11,7 +11,7 @@ class ClientSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = GetClient
-        fields = ('client_name', 'client_phone', 'client_address')
+        fields = ('client_name', 'client_phone', 'client_address') #, 'log_no', 'driver_no', 'dob', 'no_of_lessons', 'comments', 'balance')
         #fields = '__all__'
 
 
