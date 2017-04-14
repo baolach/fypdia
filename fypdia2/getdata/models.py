@@ -8,11 +8,11 @@ class GetClient(models.Model):
     log_no = models.TextField(default=None, max_length = 9)
     driver_no = models.TextField(default=None, max_length = 5)
     dob = models.TextField(default=None)
-    no_of_lessons = models.CharField(default=None, max_length =     def __str__(self):  # rather than just saying post object, we can name the posts for the admin page
-3)
+    no_of_lessons = models.CharField(default=None, max_length = 3)
     balance_due = models.CharField(default=None, max_length = 3)
     comments = models.TextField(default=None)
 
+    def __str__(self):  # rather than just saying post object, we can name the posts for the admin page
         return self.client_name
         #return models.getdata_getclient.objects.all()
 
